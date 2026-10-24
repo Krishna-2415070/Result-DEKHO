@@ -1,0 +1,93 @@
+<%- include('partials/header') %>
+
+<div class="container py-4 flex-grow-1">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="glass-card result-card">
+                <!-- Header Section with Logo and Centered Title -->
+                <div class="result-header-top w-100">
+                    <img src="/CSS/logo.webp" alt="NIT Silchar" class="nit-logo">
+                    <h1 class="academic-title">Academic Report Card</h1>
+                    <a href="/" class="btn btn-outline-light btn-sm search-btn">
+                        <span style="margin-right: 6px;">🔍</span> Search Again
+                    </a>
+                </div>
+
+                <!-- Student Info Section -->
+                <div class="student-info-section w-100">
+                    <div class="scholar-info">
+                        <div class="info-item">
+                            <span class="info-label">Scholar ID</span>
+                            <span class="info-value"><%= student.scholarId %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Department</span>
+                            <span class="info-value"><%= student.department || 'N/A' %></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subjects Table Section -->
+                <div class="subject-table-wrapper w-100">
+                    <div class="subject-table-title section-title-gradient">📚 Semester Courses & Performance</div>
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-glass text-center align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: left; width: 15%;">Subject Code</th>
+                                    <th style="text-align: center; width: 35%;">Subject Name</th>
+                                    <th style="text-align: center; width: 25%;">Grade Point</th>
+                                    <th style="text-align: center; width: 25%;">Letter Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% student.subjects.forEach((sub, index) => { %>
+                                    <tr>
+                                        <td style="text-align: left;"><strong><%= sub.subjectCode %></strong></td>
+                                        <td><%= sub.subjectName %></td>
+                                        <td>
+                                            <div style="font-weight: 700; color: #64b4ff; font-size: 1.1rem;">
+                                                <%= sub.gradePoint %>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-info" style="background: linear-gradient(135deg, #06b6d4, #0ea5e9) !important; color: white;">
+                                                <%= sub.letterGrade %>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Statistics Section -->
+                <div class="w-100">
+                    <div class="section-title-gradient" style="margin-bottom: 20px; letter-spacing: 0.04em;">📊 Overall Performance</div>
+                    <div class="stats-container">
+                        <div class="stat-card stat-gp">
+                            <div class="stat-label">Total GP</div>
+                            <div class="stat-value"><%= student.gp %></div>
+                        </div>
+                        <div class="stat-card stat-sgpa">
+                            <div class="stat-label">SGPA</div>
+                            <div class="stat-value"><%= student.sgpa.toFixed(2) %></div>
+                        </div>
+                        <div class="stat-card stat-cgpa">
+                            <div class="stat-label">CGPA</div>
+                            <div class="stat-value"><%= student.cgpa.toFixed(2) %></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Info -->
+                <div class="w-100 mt-4" style="text-align: center; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                    <small style="color: rgba(255, 255, 255, 0.5);">Semester: 4 | Academic Year: 2025-26 | Session: Even</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

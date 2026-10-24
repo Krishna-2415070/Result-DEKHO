@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+
+<div class="container my-5 flex-grow-1 d-flex align-items-center justify-content-center">
+    <div class="col-md-6">
+        <div class="glass-card text-center">            <img src="/CSS/logo.webp" alt="NIT Silchar Logo" class="card-logo mb-3" />            <h2 class="mb-4">View Academic Performance</h2>
+            
+            <% if (locals.error) { %>
+                <div class="alert alert-danger" role="alert"><%= error %></div>
+            <% } %>
+
+            <form action="/result" method="GET">
+                <div class="mb-3">
+                    <label for="scholarId" class="form-label">Enter Scholar ID / Regn. No.</label>
+                    <input type="text" class="form-control text-center" id="scholarId" name="scholarId" placeholder="e.g., 2411004" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Fetch Report Card</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
